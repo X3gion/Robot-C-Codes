@@ -17,13 +17,15 @@ task main()
 		{
 			break;
 		}
+
+
 		if(SensorValue(in1) >= 2550)
 		{
 			startMotor(rightrearMotor, -63);
 			startMotor(frontleftMotor, 63);
 			startMotor(frontrightMotor, 63);
 			startMotor(leftrearMotor,  -63);
-			waitUntil(SensorValue(in1) <= 2550 || SensorValue(dgtl1) == 5);
+			waitUntil(SensorValue(in1) <= 2550 || SensorValue(dgtl1) == 4);
 			stopMotor(frontleftMotor);
 			stopMotor(frontrightMotor);
 			stopMotor(rightrearMotor);
@@ -32,41 +34,56 @@ task main()
 		if(SensorValue(in3) >= 2550)
 
 		{
-			startMotor(frontleftMotor, -35);
-			startMotor(frontrightMotor, 35);
-			startMotor(leftrearMotor, 35);
-			startMotor(rightrearMotor, -35);
-			waitUntil(SensorValue(in1) >= 2550);
-		}
-
-		if(SensorValue(in2) >= 2550)
-		{
-			startMotor(frontleftMotor, 30);
-			startMotor(frontrightMotor, -30);
-			startMotor(leftrearMotor, -30);
-			startMotor(rightrearMotor, -30);
-			waitUntil(SensorValue(in1) >=2550);
-
-
-		}
-
-
-
-		if(SensorValue(dgtl1) ==5)
-
-		{
-			startMotor(frontleftMotor, -64);
-			startMotor(frontrightMotor, 64);
-			startMotor(leftrearMotor, 64);
-			startMotor(rightrearMotor, -64);
-			wait(0.4);
 			startMotor(frontleftMotor, -50);
 			startMotor(frontrightMotor, 50);
 			startMotor(leftrearMotor, 50);
 			startMotor(rightrearMotor, -50);
-			waitUntil(SensorValue(in1) >= 2550);
+			waitUntil(SensorValue(in1) >= 2550 || SensorValue(dgtl1) == 4);
+		}
+
+		if(SensorValue(in2) >= 2550)
+		{
+			startMotor(frontleftMotor, 50);
+			startMotor(frontrightMotor, -50);
+			startMotor(leftrearMotor, -50);
+			startMotor(rightrearMotor, 50);
+			waitUntil(SensorValue(in1) >=2550 || SensorValue(dgtl1) == 4);
+
 
 		}
+		if(SensorValue(dgtl1) ==4)
+
+		{
+			if(SensorValue(in3) > SensorValue(in2))
+			{
+				startMotor(frontleftMotor, -64);
+				startMotor(frontrightMotor, 64);
+				startMotor(leftrearMotor, 64);
+				startMotor(rightrearMotor, -64);
+				wait(0.4);
+				startMotor(frontleftMotor, -50);
+				startMotor(frontrightMotor, 50);
+				startMotor(leftrearMotor, 50);
+				startMotor(rightrearMotor, -50);
+				waitUntil(SensorValue(in1) >= 2550);
+			}
+			if(SensorValue(in2) > SensorValue(in3))
+			{
+				startMotor(frontleftMotor, 64);
+				startMotor(frontrightMotor, -64);
+				startMotor(leftrearMotor, -64);
+				startMotor(rightrearMotor, 64);
+				wait(0.4);
+				startMotor(frontleftMotor, 50);
+				startMotor(frontrightMotor, -50);
+				startMotor(leftrearMotor, -50);
+				startMotor(rightrearMotor, 50);
+				waitUntil(SensorValue(in1) >= 2550);
+			}
+		}
+
+
+
 
 
 
