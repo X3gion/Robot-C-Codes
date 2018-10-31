@@ -1,6 +1,7 @@
 #pragma config(Sensor, in1,    linefollowerMid, sensorLineFollower)
 #pragma config(Sensor, in2,    linefollowerRight, sensorLineFollower)
 #pragma config(Sensor, in3,    linefollowerLeft, sensorLineFollower)
+#pragma config(Sensor, dgtl1,  Bumper,         sensorTouch)
 #pragma config(Motor,  port2,           leftrearMotor, tmotorVex269_MC29, openLoop)
 #pragma config(Motor,  port5,           frontleftMotor, tmotorVex269_MC29, openLoop, reversed)
 #pragma config(Motor,  port6,           frontrightMotor, tmotorVex269_MC29, openLoop)
@@ -41,7 +42,7 @@ task main()
 			startMotor(frontleftMotor, 63);
 			startMotor(frontrightMotor, 63);
 			startMotor(leftrearMotor,  -63);
-			waitUntil(SensorValue(in1) <= 2550 || SensorValue(dgtl1) == 5);
+			waitUntil(SensorValue(in1) <= 2550);
 			stopMotor(frontleftMotor);
 			stopMotor(frontrightMotor);
 			stopMotor(rightrearMotor);
@@ -67,6 +68,13 @@ task main()
 
 
 		}
-
+		
+		if(SensorValue(dgtl1) == 1)
+		{
+			stopMotor(frontleftMotor);
+			stopMotor(frontrightMotor);
+			stopMotor(rightrearMotor);
+			stopMotor(leftrearMotor);
+		}
 	}
 }
